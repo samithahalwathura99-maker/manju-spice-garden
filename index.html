@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manju Spice & Herbal Garden — Koggala, Sri Lanka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#1b3a24; --green-700:#2f5d3a; --green-500:#4a8055;
+  --gold:#c8a04b; --gold-soft:#e3c988;
+  --cream:#f7f3ea; --cream-2:#efe8d8; --ink:#26241f; --muted:#6b6459;
+  --shadow:0 20px 50px -20px rgba(27,58,36,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.15}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:'Jost';font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:20px 40px;transition:.4s;background:transparent}
+nav.scrolled{background:rgba(247,243,234,.92);backdrop-filter:blur(12px);padding:14px 40px;box-shadow:0 6px 24px -12px rgba(0,0,0,.25)}
+.logo{font-family:'Cormorant Garamond';font-size:1.5rem;font-weight:700;color:#fff;transition:.4s;display:flex;align-items:center;gap:10px}
+.logo .leaf{color:var(--gold-soft)}
+nav.scrolled .logo{color:var(--green-900)}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{color:rgba(255,255,255,.9);font-size:.9rem;font-weight:400;letter-spacing:.04em;position:relative;transition:.3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--gold);transition:.3s}
+.nav-links a:hover::after{width:100%}
+nav.scrolled .nav-links a{color:var(--green-900)}
+.nav-cta{background:var(--gold);color:var(--green-900)!important;padding:10px 22px;border-radius:40px;font-weight:500;transition:.3s}
+.nav-cta:hover{background:var(--gold-soft);transform:translateY(-2px)}
+.nav-cta::after{display:none!important}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+nav.scrolled .burger span{background:var(--green-900)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1600&auto=format&fit=crop') center/cover;
+  transform:scale(1.1);animation:kenburns 18s ease-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.1)}to{transform:scale(1.22) translate(-2%,-1%)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(20,40,26,.82),rgba(20,40,26,.35))}
+.hero-content{position:relative;z-index:3;color:#fff;max-width:720px}
+.hero .eyebrow{margin-bottom:20px;opacity:0;animation:fadeUp .9s .2s forwards}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;margin-bottom:22px;color:#fff;opacity:0;animation:fadeUp .9s .4s forwards}
+.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero p{font-size:1.15rem;font-weight:300;max-width:540px;margin-bottom:34px;color:rgba(255,255,255,.9);opacity:0;animation:fadeUp .9s .6s forwards}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .8s forwards}
+.btn{padding:15px 34px;border-radius:44px;font-weight:500;letter-spacing:.03em;transition:.35s;cursor:pointer;border:none;font-family:'Jost';font-size:.95rem}
+
+/* Button 1 — "Plan Your Visit" (Uiverse alexroumi style, page colors) */
+.btn-gold{
+  padding:15px 34px;
+  border:unset;
+  border-radius:44px;
+  color:var(--green-900);
+  z-index:1;
+  background:var(--gold);
+  position:relative;
+  font-weight:600;
+  font-size:.95rem;
+  font-family:'Jost';
+  box-shadow:4px 8px 19px -3px rgba(27,58,36,.35);
+  transition:all 250ms;
+  overflow:hidden;
+}
+.btn-gold::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  height:100%;
+  width:0;
+  border-radius:44px;
+  background-color:var(--green-900);
+  z-index:-1;
+  transition:all 250ms;
+}
+.btn-gold:hover{color:var(--gold-soft);transform:none;box-shadow:4px 8px 19px -3px rgba(27,58,36,.35)}
+.btn-gold:hover::before{width:100%}
+
+/* Button 2 — "Explore the Garden" (Uiverse Randdose style, glass color) */
+.btn-ghost{
+  all:unset;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:15px 34px;
+  border:rgba(255,255,255,.55) solid .12em;
+  border-radius:44px;
+  color:#fff;
+  font-size:.95rem;
+  font-weight:600;
+  font-family:'Jost';
+  letter-spacing:.03em;
+  cursor:pointer;
+  overflow:hidden;
+  transition:border 300ms,color 300ms;
+  user-select:none;
+}
+.btn-ghost span{z-index:1}
+.btn-ghost:hover{color:var(--green-900)}
+.btn-ghost:active{border-color:rgba(255,255,255,.9)}
+.btn-ghost::after,.btn-ghost::before{
+  content:"";
+  position:absolute;
+  width:9em;
+  aspect-ratio:1;
+  background:rgba(255,255,255,.5);
+  border-radius:50%;
+  transition:transform 500ms,background 300ms;
+}
+.btn-ghost::before{left:0;transform:translateX(-8em)}
+.btn-ghost::after{right:0;transform:translateX(8em)}
+.btn-ghost:hover::before{transform:translateX(-1em)}
+.btn-ghost:hover::after{transform:translateX(1em)}
+.btn-ghost:active::before,.btn-ghost:active::after{background:rgba(255,255,255,.75)}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}from{opacity:0;transform:translateY(28px)}}
+
+/* SECTIONS */
+section{padding:110px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 60px}
+.section-head h2{font-size:clamp(2.1rem,4vw,3.1rem);color:var(--green-900);margin:14px 0}
+.section-head p{color:var(--muted)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:.9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ABOUT */
+.about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.about-imgs{position:relative;height:460px}
+.about-imgs img{position:absolute;border-radius:16px;box-shadow:var(--shadow);object-fit:cover}
+.about-imgs .a1{width:70%;height:78%;top:0;left:0}
+.about-imgs .a2{width:52%;height:56%;bottom:0;right:0;border:6px solid var(--cream)}
+.about-text h2{font-size:clamp(2rem,4vw,3rem);color:var(--green-900);margin:14px 0 18px}
+.about-text p{color:var(--muted);margin-bottom:16px}
+.pill-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.pill{background:#fff;border:1px solid var(--cream-2);padding:9px 18px;border-radius:40px;font-size:.85rem;font-weight:500;color:var(--green-700);box-shadow:0 6px 18px -12px rgba(0,0,0,.2)}
+
+/* EXPERIENCE cards */
+.experience{background:linear-gradient(180deg,var(--green-900),var(--green-700));color:#fff}
+.experience .section-head h2{color:#fff}
+.experience .section-head p{color:rgba(255,255,255,.75)}
+.exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.exp-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px 26px;transition:.4s;backdrop-filter:blur(4px)}
+.exp-card:hover{transform:translateY(-10px);background:rgba(255,255,255,.12);border-color:var(--gold)}
+.exp-card .ico{font-size:2.2rem;margin-bottom:16px}
+.exp-card h3{font-size:1.5rem;color:var(--gold-soft);margin-bottom:8px}
+.exp-card p{font-size:.92rem;color:rgba(255,255,255,.8)}
+
+/* WHY / value */
+.why{background:var(--cream-2)}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.why-item{display:flex;gap:22px;background:#fff;border-radius:16px;padding:30px;box-shadow:0 14px 40px -26px rgba(0,0,0,.35);transition:.35s}
+.why-item:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.why-num{font-family:'Cormorant Garamond';font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1;min-width:48px}
+.why-item h3{font-size:1.45rem;color:var(--green-900);margin-bottom:6px}
+.why-item p{color:var(--muted);font-size:.94rem}
+
+/* SPICES marquee */
+.spices{background:var(--green-900);color:#fff;padding:70px 0;overflow:hidden}
+.spice-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 26s linear infinite;font-family:'Cormorant Garamond';font-size:2.4rem;font-weight:600}
+.spice-track span{color:rgba(255,255,255,.35);display:inline-flex;align-items:center;gap:60px}
+.spice-track span::after{content:'✦';color:var(--gold);font-size:1.2rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gallery-grid a{overflow:hidden;border-radius:12px;position:relative}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.gallery-grid a:hover img{transform:scale(1.12)}
+.gallery-grid a::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(20,40,26,.5));opacity:0;transition:.4s}
+.gallery-grid a:hover::after{opacity:1}
+.g-tall{grid-row:span 2}.g-wide{grid-column:span 2}
+
+/* VISIT / CTA */
+.visit{position:relative;color:#fff;text-align:center;overflow:hidden}
+.visit-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1920&q=80') center/cover fixed}
+.visit-overlay{position:absolute;inset:0;background:rgba(20,40,26,.8)}
+.visit .container{position:relative;z-index:2}
+.visit h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;margin-bottom:18px}
+.visit p{max-width:560px;margin:0 auto 30px;color:rgba(255,255,255,.85)}
+.info-row{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;margin-top:44px}
+.info-item .eyebrow{display:block;margin-bottom:6px}
+.info-item p{font-size:1.05rem;color:#fff;margin:0}
+
+/* FOOTER */
+footer{background:#14261a;color:rgba(255,255,255,.7);padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-brand .logo{color:#fff;margin-bottom:14px}
+.foot-col h4{color:#fff;font-family:'Jost';font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;margin-bottom:16px}
+.foot-col a{display:block;margin-bottom:10px;font-size:.9rem;transition:.3s}
+.foot-col a:hover{color:var(--gold-soft);padding-left:4px}
+.foot-bottom{text-align:center;padding-top:24px;font-size:.82rem;color:rgba(255,255,255,.45)}
+
+/* PRODUCTS */
+.products{background:var(--cream)}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.prod-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 44px -28px rgba(0,0,0,.4);transition:.4s;display:flex;flex-direction:column}
+.prod-card:hover{transform:translateY(-10px);box-shadow:var(--shadow)}
+.prod-img{position:relative;height:230px;overflow:hidden}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.prod-card:hover .prod-img img{transform:scale(1.08)}
+.prod-badge{position:absolute;top:16px;right:16px;background:var(--green-700);color:#fff;font-size:.75rem;font-weight:500;letter-spacing:.03em;padding:6px 15px;border-radius:40px}
+.prod-body{padding:26px 26px 24px;display:flex;flex-direction:column;flex:1}
+.prod-body h3{font-size:1.55rem;color:var(--green-900);margin-bottom:10px}
+.prod-body p{color:var(--muted);font-size:.92rem;margin-bottom:24px;flex:1}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--cream-2)}
+.stock{color:var(--green-500);font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.inquire{color:var(--green-900);font-weight:500;transition:.3s}
+.inquire:hover{color:var(--gold);padding-left:4px}
+
+/* BOOKING FORM */
+.booking-card{background:#fff;max-width:640px;margin:44px auto 0;border-radius:22px;padding:40px;text-align:left;box-shadow:var(--shadow);color:var(--ink)}
+.booking-card h3{font-size:1.9rem;color:var(--green-900);margin-bottom:26px}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field input,.field select{width:100%;padding:15px 18px;border:1px solid var(--cream-2);border-radius:12px;font-family:'Jost';font-size:1rem;color:var(--ink);background:#fff;transition:.3s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--green-500);box-shadow:0 0 0 3px rgba(74,128,85,.15)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.btn-confirm{width:100%;margin-top:8px;padding:17px;background:var(--green-700);color:#fff;border:none;border-radius:12px;font-family:'Jost';font-size:1.05rem;font-weight:600;cursor:pointer;transition:.35s}
+.btn-confirm:hover{background:var(--green-900);transform:translateY(-2px)}
+.btn-confirm:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.bk-msg{margin-top:16px;text-align:center;font-weight:500;font-size:.95rem}
+.bk-msg.ok{color:var(--green-500)}
+.bk-msg.err{color:#c0392b}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .exp-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.why-grid,.foot-grid{grid-template-columns:1fr}
+  .about-imgs{height:380px;margin-bottom:20px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .g-wide{grid-column:span 2}
+  nav{padding:16px 22px}
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:74%;background:var(--green-900);flex-direction:column;justify-content:center;gap:26px;transition:.4s;box-shadow:-10px 0 40px rgba(0,0,0,.4)}
+  .nav-links.open{right:0}
+  .nav-links a{color:#fff!important;font-size:1.1rem}
+  .burger{display:flex;z-index:110}
+  .prod-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .exp-grid{grid-template-columns:1fr}
+  .info-row{gap:28px}
+  section{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#home" class="logo"><span class="leaf">❦</span> Manju Spice Garden</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#why">Why Visit</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#products">Products &amp; Remedies</a>
+    <a href="#visit" class="nav-cta">Plan Your Visit</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="eyebrow">Koggala · Habaraduwa · Sri Lanka</div>
+    <h1>Where Ceylon's <em>Spices</em> Come Alive</h1>
+    <p>Step into an aromatic garden of cinnamon, nutmeg and pepper — and rediscover the traditional wellness heritage of southern Sri Lanka.</p>
+    <div class="hero-btns">
+      <a href="#visit" class="btn btn-gold">Plan Your Visit</a>
+      <a href="#experience" class="btn-ghost"><span>Explore the Garden</span></a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll ↓</div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-imgs reveal">
+      <img class="a1" src="https://lh3.googleusercontent.com/d/1Q16YgUfYD0POC4iDM2NBblCAl45lPLzt" alt="Spice garden">
+      <img class="a2" src="https://lh3.googleusercontent.com/d/1azjV-XPsSiMwAsqkXHVWM3nrD4_8iMvC" alt="Fresh spices">
+    </div>
+    <div class="about-text reveal">
+      <div class="eyebrow">Our Story</div>
+      <h2>A Garden Built Around Sri Lanka's Natural Heritage</h2>
+      <p>Manju Spice &amp; Herbal Garden is a visitor-oriented spice and herbal garden nestled in the Koggala–Habaraduwa area of southern Sri Lanka.</p>
+      <p>We introduce guests to locally cultivated herbs and spices, sharing insight into their cultivation, their place in traditional Ayurvedic knowledge, their culinary uses, and their role in natural wellness.</p>
+      <div class="pill-row">
+        <span class="pill">Cultivation &amp; Harvesting</span>
+        <span class="pill">Ayurvedic Knowledge</span>
+        <span class="pill">Culinary Uses</span>
+        <span class="pill">Natural Wellness</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Visit</div>
+      <h2>A Journey for Every Sense</h2>
+      <p>Four simple experiences make every visit memorable.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal"><div class="ico">🌿</div><h3>Explore</h3><p>Walk through an aromatic spice garden alive with colour and scent.</p></div>
+      <div class="exp-card reveal"><div class="ico">📖</div><h3>Learn</h3><p>Discover the traditional medicinal and culinary uses of herbs and spices.</p></div>
+      <div class="exp-card reveal"><div class="ico">🍵</div><h3>Enjoy</h3><p>Relax with a cup of complimentary herbal tea during your visit.</p></div>
+      <div class="exp-card reveal"><div class="ico">🛍️</div><h3>Discover</h3><p>Take home authentic local spices, freshly sourced from the garden.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VISIT -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Visitor Value</div>
+      <h2>Why You Should Go There</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal"><div class="why-num">01</div><div><h3>Engaging Guided Tour</h3><p>See spices growing in their natural home and breathe in cinnamon, nutmeg, pepper, cloves, lemongrass and sweet cumin.</p></div></div>
+      <div class="why-item reveal"><div class="why-num">02</div><div><h3>Traditional Knowledge</h3><p>Learn the medicinal and culinary properties passed down through generations.</p></div></div>
+      <div class="why-item reveal"><div class="why-num">03</div><div><h3>Herbal Tea Experience</h3><p>Enjoy a complimentary, freshly brewed herbal tea as part of your tour.</p></div></div>
+      <div class="why-item reveal"><div class="why-num">04</div><div><h3>Sri Lankan Heritage</h3><p>Experience a genuine slice of the island's rich agricultural and spice heritage.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPICE MARQUEE -->
+<div class="spices">
+  <div class="spice-track">
+    <span>Cinnamon</span><span>Nutmeg</span><span>Black Pepper</span><span>Cloves</span><span>Lemongrass</span><span>Sweet Cumin</span>
+    <span>Cinnamon</span><span>Nutmeg</span><span>Black Pepper</span><span>Cloves</span><span>Lemongrass</span><span>Sweet Cumin</span>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Gallery</div>
+      <h2>Glimpses of the Garden</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <a class="g-tall" href="#"><img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80" alt="Cinnamon"></a>
+      <a class="g-wide" href="#"><img src="https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=800&q=80" alt="Herbs"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1600788907416-456578634209?auto=format&fit=crop&w=600&q=80" alt="Spice bowls"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80" alt="Green garden"></a>
+      <a class="g-wide" href="#"><img src="https://lh3.googleusercontent.com/d/1Bip4DVZr680tmz39uvHuA_AaHJoRr1Gi" alt="Tea"></a>
+      <a class="g-tall" href="#"><img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=600&q=80" alt="Spice market"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=600&q=80" alt="Tropical leaves"></a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS & REMEDIES -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Products &amp; Remedies</div>
+      <h2>Take the Garden Home With You</h2>
+      <p>Authentic spices, herbal remedies and handcrafted goods — sourced straight from our Koggala garden.</p>
+    </div>
+    <div class="prod-grid">
+
+      <div class="prod-card reveal">
+        <div class="prod-img">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80" alt="Traditional Herbal Hair Oil">
+          <span class="prod-badge">Natural</span>
+        </div>
+        <div class="prod-body">
+          <h3>Traditional Herbal Hair Oil</h3>
+          <p>Made with King Coconut, Vetiver grass, Dill seeds &amp; ancient herbal formulations.</p>
+          <div class="prod-foot">
+            <span class="stock">In Stock</span>
+            <a href="#visit" class="inquire">Inquire →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-img">
+          <img src="https://images.unsplash.com/photo-1552083375-1447ce886485?auto=format&fit=crop&w=600&q=80" alt="Pure Ceylon Cardamom & Spices">
+          <span class="prod-badge">Pure</span>
+        </div>
+        <div class="prod-body">
+          <h3>Pure Ceylon Cardamom &amp; Spices</h3>
+          <p>Hand-harvested aromatic spices directly cultivated in our Koggala garden.</p>
+          <div class="prod-foot">
+            <span class="stock">In Stock</span>
+            <a href="#visit" class="inquire">Inquire →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-img">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Ayurvedic Wooden Mugs">
+          <span class="prod-badge">Specialty</span>
+        </div>
+        <div class="prod-body">
+          <h3>Ayurvedic Wooden Mugs</h3>
+          <p>Gammalu herbal wood mugs crafted for traditional wellness drinking routines.</p>
+          <div class="prod-foot">
+            <span class="stock">In Stock</span>
+            <a href="#visit" class="inquire">Inquire →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VISIT / CTA -->
+<section class="visit" id="visit">
+  <div class="visit-bg"></div>
+  <div class="visit-overlay"></div>
+  <div class="container reveal">
+    <div class="eyebrow" style="color:var(--gold-soft)">Plan Your Visit</div>
+    <h2>Come Walk Among the Spices</h2>
+    <p>Located in Koggala, Habaraduwa — a short trip from Galle. We welcome curious travellers, families and spice lovers alike.</p>
+    <div class="info-row">
+      <div class="info-item"><span class="eyebrow">Location</span><p>Koggala, Habaraduwa</p></div>
+      <div class="info-item"><span class="eyebrow">Open Daily</span><p>8:00 AM – 5:00 PM</p></div>
+      <div class="info-item"><span class="eyebrow">Entry</span><p>Free Herbal Tea Included</p></div>
+    </div>
+
+    <div class="booking-card reveal">
+      <h3>Reservation Details</h3>
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="bkName" placeholder="John Doe">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="bkDate">
+        </div>
+        <div class="field">
+          <label>Time Slot</label>
+          <select id="bkTime">
+            <option>09:00 AM</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>01:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Number of Visitors</label>
+        <input type="number" id="bkVisitors" min="1" value="3">
+      </div>
+      <button class="btn-confirm" id="bkSubmit" onclick="submitBooking()">Confirm Reservation</button>
+      <p class="bk-msg" id="bkMsg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo"><span class="leaf">❦</span> Manju Spice Garden</div>
+        <p style="font-size:.9rem;max-width:300px">A visitor-oriented spice and herbal garden celebrating Sri Lanka's natural and Ayurvedic heritage.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#gallery">Gallery</a><a href="#visit">Visit</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="#">Koggala, Habaraduwa</a><a href="#">Sri Lanka</a><a href="mailto:hello@manjuspicegarden.lk">hello@manjuspicegarden.lk</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+  © 2026 Manju Spice &amp; Herbal Garden<br>
+  Designed by Dineth Eranda
+</div>
+  </div>
+</footer>
+
+<script>
+// nav scroll state
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+// mobile menu
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxodYXE5QLpl__GL6ZE8jUrdiNxrYNOLEDXKTqBkZC-ehdq1tsS-l9vGUovQOzaiU_6/exec';
+
+function submitBooking(){
+  var name=document.getElementById('bkName').value.trim();
+  var date=document.getElementById('bkDate').value;
+  var time=document.getElementById('bkTime').value;
+  var visitors=document.getElementById('bkVisitors').value;
+  var msg=document.getElementById('bkMsg');
+  var btn=document.getElementById('bkSubmit');
+
+  if(!name||!date||!visitors){
+    msg.textContent='Please fill in your name, date and number of visitors.';
+    msg.className='bk-msg err';
+    return;
+  }
+  btn.disabled=true; btn.textContent='Sending...';
+  msg.textContent='';
+
+  fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({name:name,date:date,time:time,visitors:visitors})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.ok){
+        msg.textContent='✓ Reservation received! We\'ll be in touch shortly.';
+        msg.className='bk-msg ok';
+        document.getElementById('bkName').value='';
+        document.getElementById('bkDate').value='';
+        document.getElementById('bkVisitors').value='3';
+      }else{
+        msg.textContent='Something went wrong. Please try again.';
+        msg.className='bk-msg err';
+      }
+      btn.disabled=false; btn.textContent='Confirm Reservation';
+    })
+    .catch(function(){
+      msg.textContent='Could not connect. Please try again.';
+      msg.className='bk-msg err';
+      btn.disabled=false; btn.textContent='Confirm Reservation';
+    });
+}
+
+</script>
+</body>
+</html>
