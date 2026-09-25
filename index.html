@@ -516,7 +516,7 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.clas
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxodYXE5QLpl__GL6ZE8jUrdiNxrYNOLEDXKTqBkZC-ehdq1tsS-l9vGUovQOzaiU_6/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcVIuJGInBsorXpn7UU5LtzgEdlYqP1ZZTwuCvYgxAH7en0dJVQ-_egtk2efUJHTiS/exec';
 
 function submitBooking(){
   var name=document.getElementById('bkName').value.trim();
